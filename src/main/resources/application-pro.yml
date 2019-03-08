@@ -1,0 +1,11 @@
+###############################---eureka---##############################
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://${EUREKA_SERVER}/eureka/
+#######e签宝
+sign:
+  url: https://o.tsign.cn/opentreaty-service
+  appId: 5111568195
+  appSecret: 9725f41f6baba75fad3aed50a1f93e0e
+  templateId: 2243dbdcd67343f9bdc1ca133f17c8ea

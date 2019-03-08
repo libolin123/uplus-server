@@ -1,0 +1,57 @@
+spring:
+  profiles:
+    active: ${ENV:dev}
+  application:
+    name: ${APP_NAME:youplus}
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/${DB_NAME:youplus}?useUnicode=true&characterEncoding=UTF8
+    username: ${MYSQL_USER:root}
+    password: ${MYSQL_PASS:password}
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect  #不加这句则默认为myisam引擎
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+    open-in-view: true
+    properties:
+      hibernate:
+        enable_lazy_load_no_trans: true
+  ###############################---redis---##############################
+  redis:
+    host: ${REDIS_HOST:127.0.0.1}
+    port: ${REDIS_PORT:6379}
+    password: ${REDIS_PASSWORD:}
+  ###############################---caffeine---##############################
+  cache:
+    type: caffeine
+    caffeine:
+      spec: maximumSize=500,expireAfterAccess=36000s   #最后一次写入或访问后经过固定时间过期
+###############################---eureka---##############################
+eureka:
+  instance:
+    prefer-ip-address: true
+###############################---log---##############################
+logging:
+  file: ./logback.log
+###############################---logstash---##############################
+logstash:
+  ip: ${LOGSTASH_IP_PORT:127.0.0.1:4560}
+###############################---短信---##############################
+sms:
+  apiKey: 84ab7e37f4c2494fd813ba00b03b0401
+###############################---Apollo---##############################
+app:
+  id: 123456789
+apollo:
+  meta: http://apollo:8080
+  bootstrap:
+    enabled: true
+###############################---七牛云---##############################
+qiniu:
+  #ak: 3DR4mVwQzEoqO4hQxKfg9_SFGdt1CUPTL7tHDFvh
+  ak: C-sUrk-wUNCuypUseL1lT7kLWwQ70YaoMnHAC0W9
+  #sk: lEmpAX3ZiNaNHAV5LS8ArKIjPZirNwMqGNOu2hqV
+  sk: iaTA6PJU6VpN84Jcnz2976tNI04tEKPmF1INPIgO
+  bucket: youplus
